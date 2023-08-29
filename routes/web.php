@@ -4,8 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController as DashboardController;
 use App\Http\Controllers\Admin\ProjectController as ProjectController;
 use Illuminate\Support\Facades\Route;
-
-
+use App\Http\Controllers\Admin\TechnologyController as TechnologyController;
+use App\Models\Technology;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('projects', ProjectController::class);
+    Route::resource('technologies', TechnologyController::class);
 });
 
 require __DIR__.'/auth.php';
