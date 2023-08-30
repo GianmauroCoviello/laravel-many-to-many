@@ -24,9 +24,9 @@ class Project extends Model
         return Str::slug($title, '-');
     }
 
-    public function technology(){
+    public function technologies(){
         
-        return $this->belongsTo(Technology::class);
+        return $this->belongsToMany(Technology::class);
         
     }
 

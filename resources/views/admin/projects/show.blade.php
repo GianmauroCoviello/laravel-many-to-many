@@ -10,11 +10,22 @@
                 <div class="content-image my-3">
                     <img src="{{asset('storage/' . $project->cover_image)}}" alt="">
                 </div>
-                
+                <h6>Contenuto:</h6>
                 <p>{{$project->content}}</p>
 
-                
+                <h6>Tipo di progetto:</h6>
                 <p>{{$project->type->name}}</p>
+
+                {{-- <p>{{$project->technologies}}</p> --}}
+                <h6>Tecnologie utilizzate:</h6>
+                <div class="d-flex">
+                     @foreach ($project->technologies as $tech)
+                        <p class="pe-3">{{$tech->name}}</p>
+                    @endforeach
+
+                </div>
+               
+                
             </div>
             <div class="col">
                 <a href="{{route('admin.projects.index')}}" class="btn btn-primary">

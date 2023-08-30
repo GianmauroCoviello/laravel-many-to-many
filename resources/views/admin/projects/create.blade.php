@@ -26,12 +26,12 @@
                     {{-- title --}}
                     <div class="form-group mb-3 mt-5">
                         <label class="control-table">Titolo</label>
-                        <input type="text" name="title" id="title" class="form-control" required>
+                        <input type="text" name="title" id="title" class="form-control widht-550" required>
                     </div>
                     {{-- image --}}
                     <div class="form-group">
                         <label class="control-table pe-3">Immagine di copertina</label><br>
-                        <input type="file" class="control-table" name="cover_image" id="cover_image" >
+                        <input type="file" class="control-table widht-550" name="cover_image" id="cover_image" >
                     </div>
                     {{-- content --}}
                     <div class="form-group mb-3 mt-4">
@@ -48,6 +48,20 @@
                                 <option value="{{$type->id}}" >{{$type->name}}</option>
                             @endforeach
                         </select>
+                        
+                        
+                    </div>
+
+                    {{-- technologies --}}
+                    <div class="form-group mb-3 mt-4">
+                        <p></p>
+                       
+                          {{-- lezione minuto 15:00 --}}
+                        @foreach($technologies as $tech)
+                            <input type="checkbox" name="technologies[]"  class="form-check-input" value="{{$tech->id}}" {{in_array($tech->id, old('technologies', [])) ? 'checked' :'' }}>
+                            <label class="form-check-label">{{$tech->name}}</label>
+                        @endforeach
+                        
                         
                         
                     </div>

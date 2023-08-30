@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-// use App\Http\Controllers\Admin\TypeController;
+
+
+// use App\Http\Controllers\Admin\TechnologyController;
 
 use App\Models\Project;
 use App\Models\Type;
+use App\Models\Technology;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+
 
 class ProjectController extends Controller
 {
@@ -34,7 +38,9 @@ class ProjectController extends Controller
     {
         
         $types = Type::all();
-        return view('admin.projects.create', compact('types'));
+        $technologies = Technology::all();
+        
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -46,7 +52,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $form_data = $request->all();
-
+        // dd($form_data);
         $project = new Project();
 
         if ($request->hasFile('cover_image')) {
@@ -62,6 +68,12 @@ class ProjectController extends Controller
         $project->fill($form_data);
 
         $project->save();
+
+        if ($request->has('technologies')){
+
+            $project->technologies()->sync($request->technologies);
+           
+        }
 
         return Redirect()->route('admin.projects.index');
     }
