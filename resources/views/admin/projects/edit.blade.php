@@ -68,20 +68,14 @@
                         <input type="checkbox" name="technologies[]"  class="form-check-input" value="{{$tech->id}}" {{ $project->technologies->contains($tech) ? 'checked' : ''}}>
                         <label class="form-check-label">{{$tech->name}}</label>
                     @endforeach
-                    
-                    
-                    
+                       
                 </div>
-
-
 
 
                 <button type="submit" class="btn btn-success mt-4">
                     Salva
                 </button>
                 {{-- messaggi di errore --}}
-                
-
 
             </form>
         </div>

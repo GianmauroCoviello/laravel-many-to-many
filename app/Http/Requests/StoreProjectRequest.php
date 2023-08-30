@@ -26,7 +26,9 @@ class StoreProjectRequest extends FormRequest
         return [
             'title'=>'required|max:50',
             'cover_image'=>'image|max:10000',
-            'type_id' => 'required|exists:types,id'
+            'cover_image' => 'required',
+            'type_id' => 'required|exists:types,id',
+            'technology_id' => 'required|exists:technology,id',
 
 
         ];
@@ -45,6 +47,7 @@ class StoreProjectRequest extends FormRequest
             'cover_image.image'=>'ERRORE: assicurati che il file caricato sia in formato png, jpeg, jpg',
             'type_id.required'=>'Devi selezionare una tipologia',
             'type_id.exist'=>'tipologia selezionata non valida',
+            'technology_id' => 'inserisci una tecnologia'
 
 
         ];
