@@ -133,6 +133,11 @@ class ProjectController extends Controller
         $form_data['slug']= $project->generateSlug($form_data['title']);
 
         $project->update($form_data);
+        if ($request->has('technologies')){
+
+            $project->technologies()->sync($request->technologies);
+           
+        }
 
         $project->save();
 
